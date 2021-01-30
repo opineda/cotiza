@@ -3,3 +3,18 @@
     height: 100%;
     background-color: #e0e1e2;
 }
+
+tbody {
+    display: block;
+    height: calc(100vh - 297px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-y: scroll;
+}
+
+thead,
+tbody tr {
+    display: block;
+    width: 100%;
+}
