@@ -3,20 +3,20 @@ import 'semantic-ui-css/semantic.min.css';
 import './custom.css'
 import { Container, Image, Button, Icon, Popup, Grid, Segment, Checkbox, Table, Input, List } from 'semantic-ui-react';
 import HeaderIconButton from './components/HeadericonButton'
-import {Row,RowFooter} from './components/Functions'
+import { Row, RowFooter, LoginModal } from './components/Functions'
 
 var cmd = process.argv[1];
 var credJson = JSON.parse('[{"id":0,"usr":"Usuario","pwd":"RGVtbzEyMw==","isActive":false,"isDemo":true,"startDate":null},{"id":1,"usr":"Ingeniero","pwd":"ZWRpZmljaXVt","isActive":false,"isDemo":false,"startDate":null},{"id":2,"usr":"Admin","pwd":"JEFkbWluMTIzKg==","isActive":false,"isDemo":false,"startDate":null}]');
 
 if (localStorage.getItem("credentials") === null) {
-    // Running for the first time.
-  localStorage.setItem("credentials",JSON.stringify(credJson));
+  // Running for the first time.
+  localStorage.setItem("credentials", JSON.stringify(credJson));
 }
 
 var credVar = JSON.parse(localStorage.getItem('credentials') || '{}');
-var found = credVar.filter(function(item: any) { return item.isActive === true; });
+var found = credVar.filter(function (item: any) { return item.isActive === true; });
 console.log('found', found[0]);
-if (found[0] === undefined ) {
+if (found[0] === undefined) {
   console.log('Its undefined');
 }
 
@@ -26,46 +26,47 @@ function App() {
       <header className="App-header">
         <div>
           {/*Components.HeaderIconButton("Nuevo proyecto",'add circle'); */}
-          <Button.Group > 
-            <HeaderIconButton desc={"Nuevo proyecto"} iconName={"add circle"}/>
-            <HeaderIconButton desc={"Guardar como..."} iconName={"save"}/>
-            <HeaderIconButton desc={"Abrir"} iconName={"folder open"}/>
-            <HeaderIconButton desc={"Imprimir"} iconName={"print"}/>
+          <Button.Group >
+            <HeaderIconButton desc={"Nuevo proyecto"} iconName={"add circle"} />
+            <HeaderIconButton desc={"Guardar como..."} iconName={"save"} />
+            <HeaderIconButton desc={"Abrir"} iconName={"folder open"} />
+            <HeaderIconButton desc={"Imprimir"} iconName={"print"} />
+            <LoginModal />
           </Button.Group>
         </div>
       </header>
       <Grid >
-        <Grid.Column width={11} style={{ padding: '14px 6px 14px 19px'}} >
-            <Table compact='very' definition unstackable fluid fixed singleLine>
-              <Table.Header>
-                <Table.Row>
-                  <Table.HeaderCell><Checkbox /></Table.HeaderCell>
-                  <Table.HeaderCell width={1}>#</Table.HeaderCell>
-                  <Table.HeaderCell width={8}>Rubro</Table.HeaderCell>
-                  <Table.HeaderCell textAlign='right' width={3}>Cantidad / ud.</Table.HeaderCell>
-                  <Table.HeaderCell textAlign='right' width={2}>V. Unitario</Table.HeaderCell>
-                  <Table.HeaderCell textAlign='right' width={2}>Valor Total</Table.HeaderCell>
-                </Table.Row>
-              </Table.Header>
-              <Table.Body>
-                <Row id={1} descripcion={"Excavación Manual Manual Manual Manual Manual Manual"} unidad={"m2"} cantidad={2} vUnitario={1.251} vTotal={2.50}/> 
-                <Row id={2} descripcion={"Excavación Manual"} unidad={"m2"} cantidad={2} vUnitario={1.251} vTotal={2.50}/> 
-                <Row id={3} descripcion={"Excavación Manual"} unidad={"m2"} cantidad={2} vUnitario={1.251} vTotal={2.50}/> 
-                <Row id={3} descripcion={"Excavación Manual"} unidad={"m2"} cantidad={2} vUnitario={1.251} vTotal={2.50}/> 
-                <Row id={3} descripcion={"Excavación Manual"} unidad={"m2"} cantidad={2} vUnitario={1.251} vTotal={2.50}/> 
-                <Row id={3} descripcion={"Excavación Manual"} unidad={"m2"} cantidad={2} vUnitario={1.251} vTotal={2.50}/> 
-                <Row id={3} descripcion={"Excavación Manual"} unidad={"m2"} cantidad={2} vUnitario={1.251} vTotal={2.50}/> 
-              </Table.Body>
-            </Table>
+        <Grid.Column width={11} style={{ padding: '14px 6px 14px 19px' }} >
+          <Table compact='very' definition unstackable fluid fixed singleLine>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell><Checkbox /></Table.HeaderCell>
+                <Table.HeaderCell width={1}>#</Table.HeaderCell>
+                <Table.HeaderCell width={8}>Rubro</Table.HeaderCell>
+                <Table.HeaderCell textAlign='right' width={3}>Cantidad / ud.</Table.HeaderCell>
+                <Table.HeaderCell textAlign='right' width={2}>V. Unitario</Table.HeaderCell>
+                <Table.HeaderCell textAlign='right' width={2}>Valor Total</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              <Row id={1} descripcion={"Excavación Manual Manual Manual Manual Manual Manual"} unidad={"m2"} cantidad={2} vUnitario={1.251} vTotal={2.50} />
+              <Row id={2} descripcion={"Excavación Manual"} unidad={"m2"} cantidad={2} vUnitario={1.251} vTotal={2.50} />
+              <Row id={3} descripcion={"Excavación Manual"} unidad={"m2"} cantidad={2} vUnitario={1.251} vTotal={2.50} />
+              <Row id={3} descripcion={"Excavación Manual"} unidad={"m2"} cantidad={2} vUnitario={1.251} vTotal={2.50} />
+              <Row id={3} descripcion={"Excavación Manual"} unidad={"m2"} cantidad={2} vUnitario={1.251} vTotal={2.50} />
+              <Row id={3} descripcion={"Excavación Manual"} unidad={"m2"} cantidad={2} vUnitario={1.251} vTotal={2.50} />
+              <Row id={3} descripcion={"Excavación Manual"} unidad={"m2"} cantidad={2} vUnitario={1.251} vTotal={2.50} />
+            </Table.Body>
+          </Table>
 
           <div style={{ position: 'relative', bottom: '0.2rem' }}>
             <Segment.Group>
-              <Segment.Group horizontal>
-                <Segment>Subtotal: 0.00</Segment>
-                <Segment>IVA: 0.00</Segment>
-                <Segment>Indirectos: 0.00</Segment>
+              <Segment.Group horizontal size='small'>
+                <Segment>Subtotal: <br /> 0.00</Segment>
+                <Segment>IVA: <br /> 0.00</Segment>
+                <Segment>Indirectos: <br /> 0.00</Segment>
+                <Segment>Total: <br /> 0.00</Segment>
               </Segment.Group>
-              <Segment>Total: 0.00</Segment>
             </Segment.Group>
             <Table compact='very' unstackable fluid>
               <Table.Footer >
@@ -77,15 +78,15 @@ function App() {
                     </Button>
                     <Button disabled icon labelPosition='right' size='small' >
                       Editar
-                      <Icon name='edit' /> 
+                      <Icon name='edit' />
                     </Button>
                     <Button disabled icon labelPosition='right' size='small' >
                       Eliminar
-                      <Icon name='delete' /> 
+                      <Icon name='delete' />
                     </Button>
                     <Button icon labelPosition='right' size='small' >
                       Exportar
-                      <Icon name='share square' /> 
+                      <Icon name='share square' />
                     </Button>
                   </Table.HeaderCell>
                 </Table.Row>
@@ -100,15 +101,15 @@ function App() {
               <div>Total rubros: 4
                 <Input fluid icon='filter' placeholder='Filtrar...' />
               </div>
-              <hr/>
+              <hr />
               <div>Contratista :</div>
-              <Input fluid disabled action={{icon:'edit icon'}} placeholder='Constructora Fulanito' />
-              <br/>
+              <Input fluid disabled action={{ icon: 'edit icon' }} placeholder='Constructora Fulanito' />
+              <br />
               <div>Cliente :</div>
-              <Input fluid disabled action={{icon:'edit icon'}} placeholder='Ministerio Ejemplo' />
-              <br/>
+              <Input fluid disabled action={{ icon: 'edit icon' }} placeholder='Ministerio Ejemplo' />
+              <br />
               <div>Ubicación :</div>
-              <Input fluid disabled action={{icon:'edit icon'}} placeholder='Calle 1 #1234 y Calle 2' />
+              <Input fluid disabled action={{ icon: 'edit icon' }} placeholder='Calle 1 #1234 y Calle 2' />
             </div>
           </Segment>
         </Grid.Column>

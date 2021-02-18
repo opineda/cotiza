@@ -1,4 +1,5 @@
-import { Container, Image, Button, Icon, Popup, Grid, Segment, Checkbox, Table, Input, List } from 'semantic-ui-react';
+import React from 'react';
+import { Container, Image, Button, Icon, Popup, Modal, Header, Checkbox, Table, Input, List, Form, Segment } from 'semantic-ui-react';
 
 interface PropsRow {
     id: Number;
@@ -57,4 +58,44 @@ function RowFooter({nombre,valor}: PropsRowF) {
     );
 }
 
-export {Row,RowFooter}
+function LoginModal() {
+    const [open, setOpen] = React.useState(false)
+  
+    return (
+      <Modal
+        basic
+        onClose={() => setOpen(true)}
+        onOpen={() => setOpen(true)}
+        open={open}
+        size='small'
+        trigger={<Button>Iniciar sesión</Button>}
+      >
+        <Header icon>
+          <Icon name='building outline' />
+          Ingresa tus datos para empezar
+        </Header>
+        <Modal.Content>
+            <Form inverted size='large'>
+                <Segment inverted stacked>
+                <Form.Input fluid icon='user' iconPosition='left' placeholder='Usuario' />
+                <Form.Input
+                    fluid
+                    icon='lock'
+                    iconPosition='left'
+                    placeholder='Contraseña'
+                    type='password'
+                />
+                </Segment>
+            </Form>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button color='teal' inverted onClick={() => setOpen(false)}>
+            <Icon name='checkmark' /> Iniciar sesión
+          </Button>
+        </Modal.Actions>
+      </Modal>
+    )
+  }
+
+
+export {Row,RowFooter,LoginModal}

@@ -6,7 +6,7 @@
 
 tbody {
     display: block;
-    height: calc(100vh - 297px);
+    height: calc(100vh - 260px);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
